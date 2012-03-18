@@ -54,7 +54,7 @@ module RubyChina
   end
 end
 
-I18n.locale = 'zh-CN'
+I18n.locale = 'zh-TW'
 
 require 'yaml'
 YAML::ENGINE.yamler= 'syck'
