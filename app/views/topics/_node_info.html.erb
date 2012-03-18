@@ -1,7 +1,7 @@
 <% if !node.blank? %>
   <div>
     <h2><%= node.name %></h2>
-    <span class="total">共有 <%= render_node_topics_count(node) %> 个讨论主题</span>
+    <span class="total">共有 <%= render_node_topics_count(node) %> 個討論主題</span>
     <div class="feed">
       <%= link_to("#{content_tag(:span, "", :class => "icon share_icons_rss" )}".html_safe, feed_node_topics_url, :title => "#{node.name} Feed") %>
     </div>
