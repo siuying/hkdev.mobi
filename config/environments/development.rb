@@ -20,8 +20,7 @@ RubyChina::Application.configure do
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
-  # config.cache_store = [:dalli_store,"127.0.0.1", {:namespace => "rb-cn", :compression => true}]
-  config.cache_store = :mem_cache_store, "localhost"
+  config.cache_store = [:dalli_store,"127.0.0.1", {:namespace => "mobile.dev", :compression => true}]
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
