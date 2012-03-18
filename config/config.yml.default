@@ -6,13 +6,11 @@ defaults: &defaults
     - "admin@admin.com"
   google_analytics_key: ""
   upload_url: "http://ruby-china-files-dev.b0.upaiyun.com"
-  upyun_username: "test"
-  upyun_password: "123123"
-  upyun_bucket: "ruby-china-files-dev"
   google_group_email: "shanghaionrails@googlegroups.com"
   email_sender: 'no-reply@ruby-china.org'
   aws_access_key_id: ''
   aws_secret_access_key: ''
+  aws_s3_bucket: 'hk-mobile-dev'
   twitter_token: "uJ9fBa53SmqrHBqs1qq5cg"
   twitter_secret: "b9e9hbsa9sYYCqmW0kTyfALshclmkQX4kzTm8BBBTw"
   github_token: "207bd3415f6f42bcf8da"

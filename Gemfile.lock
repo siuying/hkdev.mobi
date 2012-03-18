@@ -109,12 +109,6 @@ GEM
       xpath (~> 0.1.4)
     carrierwave (0.5.7)
       activesupport (~> 3.0)
-    carrierwave-mongoid (0.1.2)
-      carrierwave (>= 0.5.6)
-      mongoid (~> 2.1)
-    carrierwave-upyun (0.1.3)
-      carrierwave (>= 0.5.7)
-      rest-client (>= 1.6.7)
     cells (3.7.1)
       actionpack (~> 3.0)
       railties (~> 3.0)
@@ -139,6 +133,7 @@ GEM
     erubis (2.7.0)
     escape (0.0.4)
     eventmachine (0.12.10)
+    excon (0.9.6)
     execjs (1.2.9)
       multi_json (~> 1.0)
     factory_girl (2.3.2)
@@ -152,6 +147,17 @@ GEM
       rack (>= 1.1.0, < 2)
     fattr (2.2.1)
     ffi (1.0.11)
+    fog (1.1.2)
+      builder
+      excon (~> 0.9.0)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0.3)
+      net-scp (~> 1.0.4)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5.0)
+      ruby-hmac
+    formatador (0.2.1)
     hashie (1.2.0)
     highline (1.6.8)
     hike (1.2.1)
@@ -281,8 +287,6 @@ GEM
     resque_mailer (2.0.2)
       actionmailer (>= 3.0.0)
       resque (>= 1.2.3)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     rsolr (1.0.6)
       builder (>= 2.1.2)
     rspec (2.8.0)
@@ -306,6 +310,7 @@ GEM
       hoe (>= 1.5.1)
       json
       mash (>= 0.0.3)
+    ruby-hmac (0.4.0)
     ruby-openid (2.1.8)
     rubypython (0.5.3)
       blankslate (>= 2.1.2.3)
@@ -390,8 +395,6 @@ DEPENDENCIES
   capistrano (= 2.9.0)
   capybara
   carrierwave (= 0.5.7)
-  carrierwave-mongoid (= 0.1.2)
-  carrierwave-upyun (= 0.1.3)
   cells (= 3.7.1)
   chunky_png (= 1.2.5)
   coffee-rails (~> 3.2.1)
@@ -399,6 +402,7 @@ DEPENDENCIES
   dalli (= 1.1.1)
   devise (= 1.5.2)
   factory_girl_rails
+  fog
   grape!
   hpricot (~> 0.8.5)
   jquery-rails (= 1.0.16)

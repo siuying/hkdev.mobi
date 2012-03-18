@@ -13,8 +13,7 @@ end
 
 # 上传组件
 gem 'carrierwave', '0.5.7'
-gem 'carrierwave-mongoid', '0.1.2', :require => 'carrierwave/mongoid'
-gem 'carrierwave-upyun', '0.1.3'
+gem 'fog'
 gem 'mini_magick','3.3'
 
 # Mongoid 辅助插件
