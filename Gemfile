@@ -13,6 +13,7 @@ end
 
 # 上传组件
 gem 'carrierwave', '0.5.7'
+gem 'carrierwave-mongoid'
 gem 'fog'
 gem 'mini_magick','3.3'
 
