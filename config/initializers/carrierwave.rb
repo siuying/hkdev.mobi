@@ -9,7 +9,6 @@ CarrierWave.configure do |config|
   }
 
   config.fog_directory  = Setting.aws_s3_bucket
-  config.fog_host       = 'https://assets.example.com'
-  config.fog_public     = true
+  config.fog_public     = false
   config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
 end
