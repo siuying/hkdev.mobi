@@ -1,19 +1,24 @@
 # coding: utf-8
 require "bundler/capistrano"
 
-set :application, "ruby-china"
-set :repository,  "git://github.com/huacnlee/ruby-china.git"
-set :branch, "master"
-set :scm, :git
-set :user, "ruby"
-set :deploy_to, "/home/#{user}/www/#{application}"
-set :runner, "ruby"
-set :deploy_via, :remote_cache
-set :git_shallow_clone, 1
+$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
+require "rvm/capistrano"
 
-role :web, "58.215.172.218"                          # Your HTTP server, Apache/etc
-role :app, "58.215.172.218"                          # This may be the same as your `Web` server
-role :db,  "58.215.172.218", :primary => true # This is where Rails migrations will run
+set :application, "hkdev.mobi"
+set :repository,  "git@github.com:siuying/hkdev.mobi.git"
+set :branch, "production"
+set :scm, :git
+set :user, "siuying"
+set :deploy_to, "/home/#{user}/production/#{application}"
+set :runner, "siuying"
+set :deploy_via, :remote_cache
+set :rvm_type, :user
+set :use_sudo, false
+default_run_options[:pty] = true 
+
+role :web, "hkdev.mobi"
+role :app, "hkdev.mobi"
+role :db,  "hkdev.mobi", :primary => true
 
 # unicorn.rb 路径
 set :unicorn_path, "#{deploy_to}/current/config/unicorn.rb"
@@ -67,11 +72,3 @@ task :mongoid_migrate_database, :roles => :web do
 end
 
 after "deploy:finalize_update","deploy:symlink", :init_shared_path, :link_shared_files, :compile_assets, :mongoid_create_indexes, :mongoid_migrate_database
-
-
-set :default_environment, {
-  'PATH' => "/home/ruby/.rvm/gems/ruby-1.9.3-p0/bin:/home/ruby/.rvm/gems/ruby-1.9.3-p0@global/bin:/home/ruby/.rvm/rubies/ruby-1.9.3-p0/bin:/home/ruby/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games",
-  'RUBY_VERSION' => 'ruby-1.9.3-p0',
-  'GEM_HOME' => '/home/ruby/.rvm/gems/ruby-1.9.3-p0',
-  'GEM_PATH' => '/home/ruby/.rvm/gems/ruby-1.9.3-p0:/home/ruby/.rvm/gems/ruby-1.9.3-p0@global'
-}
