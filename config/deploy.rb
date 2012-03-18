@@ -25,7 +25,7 @@ set :unicorn_path, "#{deploy_to}/current/config/unicorn.rb"
 
 namespace :deploy do
   task :start, :roles => :app do
-    run "cd #{deploy_to}/current/; RAILS_ENV=production unicorn_rails -c #{unicorn_path} -D"
+    run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec unicorn_rails -c #{unicorn_path} -D"
   end
 
   task :stop, :roles => :app do
@@ -46,29 +46,29 @@ task :init_shared_path, :roles => :web do
 end
 
 task :link_shared_files, :roles => :web do
-  run "ln -sf #{deploy_to}/shared/config/*.yml #{deploy_to}/current/config/"
-  run "ln -sf #{deploy_to}/shared/config/unicorn.rb #{deploy_to}/current/config/"
-  run "ln -s #{deploy_to}/shared/assets #{deploy_to}/current/public/assets"
+  run "ln -sf #{deploy_to}/shared/config/*.yml #{release_path}/config/"
+  run "ln -sf #{deploy_to}/shared/config/unicorn.rb #{release_path}/config/"
+  run "ln -s #{deploy_to}/shared/assets #{release_path}/public/assets"
 end
 
 task :restart_resque, :roles => :web do
-  run "cd #{deploy_to}/current/; RAILS_ENV=production ./script/resque stop; RAILS_ENV=production ./script/resque start"
+  run "cd #{release_path}; RAILS_ENV=production ./script/resque stop; RAILS_ENV=production ./script/resque start"
 end
 
 task :restart_resque, :roles => :web do
-  run "cd #{deploy_to}/current/; RAILS_ENV=production ./script/resque stop; RAILS_ENV=production ./script/resque start"
+  run "cd #{deployrelease_path_to}; RAILS_ENV=production ./script/resque stop; RAILS_ENV=production ./script/resque start"
 end
 
 task :mongoid_create_indexes, :roles => :web do
-  run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake db:mongoid:create_indexes"
+  run "cd #{release_path}; RAILS_ENV=production bundle exec rake db:mongoid:create_indexes"
 end
 
 task :compile_assets, :roles => :web do     
-  run "cd #{deploy_to}/current/; bundle exec rake assets:precompile"    
+  run "cd #{release_path}; bundle exec rake assets:precompile"    
 end
 
 task :mongoid_migrate_database, :roles => :web do
-  run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake db:migrate"
+  run "cd #{release_path}; RAILS_ENV=production bundle exec rake db:migrate"
 end
 
-after "deploy:finalize_update","deploy:symlink", :init_shared_path, :link_shared_files, :compile_assets, :mongoid_create_indexes, :mongoid_migrate_database
+after "deploy:symlink", :init_shared_path, :link_shared_files, :compile_assets, :mongoid_create_indexes, :mongoid_migrate_database
