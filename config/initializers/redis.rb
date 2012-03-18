@@ -8,4 +8,4 @@ Redis::Objects.redis = Redis.new(:host => redis_config['host'], :port => redis_c
 
 Resque::Mailer.default_queue_name = "mailer"
 Resque.redis = Redis.new(:host => redis_config['host'],:port => redis_config['port'])
-Resque.redis.namespace = "resque:ruby-china"
+Resque.redis.namespace = "resque:hk-mobile-dev"
